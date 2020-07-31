@@ -24,6 +24,11 @@ spring:
 
 # mybatis config
 mybatis:
-  typeAliasesPackage: com.liuw.demo.db.domain
-  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.liuw.management.db.domain.*
+  mapperLocations: classpath:mapper/*/*.xml
   #configLocation: classpath:/mybatis-config.xml
+
+# mybatis控制台日志
+logging:
+  level:
+    com.liuw.management.db.mapper : debug
