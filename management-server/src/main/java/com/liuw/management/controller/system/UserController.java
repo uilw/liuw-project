@@ -41,7 +41,7 @@ public class UserController {
             e.printStackTrace();
         }
 
-        Map<String, Object> resp = new HashMap<>(3);
+        Map<String, Object> resp = new HashMap<String, Object>(4);
         resp.put("status", 200);
         resp.put("message", "success");
         resp.put("data", user);
