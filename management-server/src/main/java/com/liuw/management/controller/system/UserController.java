@@ -1,17 +1,16 @@
 package com.liuw.management.controller.system;
 
+import com.github.pagehelper.PageInfo;
+import com.liuw.management.common.response.ResponseData;
+import com.liuw.management.common.controller.BaseController;
 import com.liuw.management.db.domain.system.User;
+import com.liuw.management.db.domain.system.request.UserRequest;
 import com.liuw.management.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author liuw
@@ -22,30 +21,29 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
 
+    @Autowired
     private UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @ApiOperation(value = "根据i查询用户信息")
+    @ApiOperation(value = "根据id查询用户信息")
     @GetMapping("/id/{id}")
-    public Map<String, Object> getById(@PathVariable("id") Long id) {
-
+    public ResponseData getById(@PathVariable("id") Long id) {
         User user = null;
         try {
             user = userService.getById(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        Map<String, Object> resp = new HashMap<String, Object>(4);
-        resp.put("status", 200);
-        resp.put("message", "success");
-        resp.put("data", user);
-
-        return resp;
+        return success(user);
     }
+    @ApiOperation(value = "分页查询")
+    @PostMapping("/page")
+    public ResponseData findByPage(@RequestBody UserRequest userRequest) {
+        
+        PageInfo<User> pageInfo = userService.findByPage(userRequest); 
+                
+        return success(pageInfo.getList(),pageInfo.getTotal());
+    }
+    
 }

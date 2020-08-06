@@ -1,7 +1,9 @@
 package com.liuw.management.service;
 
 
+import com.github.pagehelper.PageInfo;
 import com.liuw.management.db.domain.system.User;
+import com.liuw.management.db.domain.system.request.UserRequest;
 
 /**
  * @author liuw
@@ -15,5 +17,10 @@ public interface UserService {
      * @return
      */
     User getById(Long id);
+
+    /**
+     * 分页查询
+     */
+    PageInfo<User> findByPage(UserRequest userRequest);
 
 }
