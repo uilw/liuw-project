@@ -1,8 +1,8 @@
 package com.liuw.management.controller.system;
 
 import com.github.pagehelper.PageInfo;
-import com.liuw.management.common.response.ResponseData;
 import com.liuw.management.common.controller.BaseController;
+import com.liuw.management.common.response.ResponseData;
 import com.liuw.management.db.domain.system.User;
 import com.liuw.management.db.domain.system.request.UserRequest;
 import com.liuw.management.service.UserService;
@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/user")
+@Validated
 public class UserController extends BaseController {
 
     @Autowired
@@ -37,6 +39,7 @@ public class UserController extends BaseController {
         }
         return success(user);
     }
+    
     @ApiOperation(value = "分页查询")
     @PostMapping("/page")
     public ResponseData findByPage(@RequestBody UserRequest userRequest) {

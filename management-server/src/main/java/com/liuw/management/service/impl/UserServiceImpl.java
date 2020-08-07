@@ -28,13 +28,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getById(Long id) {
+        id = null;
         return userMapper.selectByPrimaryKey(id);
     }
 
     @Override
     public PageInfo<User> findByPage(@RequestBody UserRequest userRequest) {
-        PageHelper.startPage(1,10);
+        // 设置分页
+        PageHelper.startPage(userRequest.getPage(), userRequest.getPageSize());
+
         List<User> users = userMapper.selectByExample(new UserExample());
+
         return new PageInfo<User>(users);
     }
 }
