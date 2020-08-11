@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getById(Long id) {
-        id = null;
         return userMapper.selectByPrimaryKey(id);
     }
 
@@ -40,5 +39,10 @@ public class UserServiceImpl implements UserService {
         List<User> users = userMapper.selectByExample(new UserExample());
 
         return new PageInfo<User>(users);
+    }
+
+    @Override
+    public int update(User user) {
+        return userMapper.updateByPrimaryKey(user);
     }
 }

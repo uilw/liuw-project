@@ -23,4 +23,9 @@ public interface UserService {
      */
     PageInfo<User> findByPage(UserRequest userRequest);
 
+    /**
+     * 修改
+     */
+    int update(User user);
+
 }

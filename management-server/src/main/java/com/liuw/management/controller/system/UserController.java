@@ -10,7 +10,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/user")
-@Validated
 public class UserController extends BaseController {
 
     @Autowired
@@ -31,22 +29,23 @@ public class UserController extends BaseController {
     @ApiOperation(value = "根据id查询用户信息")
     @GetMapping("/id/{id}")
     public ResponseData getById(@PathVariable("id") Long id) {
-        User user = null;
-        try {
-            user = userService.getById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return success(user);
+        return success(userService.getById(id));
     }
-    
+
     @ApiOperation(value = "分页查询")
     @PostMapping("/page")
     public ResponseData findByPage(@RequestBody UserRequest userRequest) {
-        
-        PageInfo<User> pageInfo = userService.findByPage(userRequest); 
-                
-        return success(pageInfo.getList(),pageInfo.getTotal());
+
+        PageInfo<User> pageInfo = userService.findByPage(userRequest);
+
+        return success(pageInfo.getList(), pageInfo.getTotal());
     }
-    
+
+    @ApiOperation(value = "修改用户信息")
+    @PostMapping("/update")
+    public ResponseData update(@RequestBody User user) {
+        userService.update(user);
+        return success();
+    }
+
 }

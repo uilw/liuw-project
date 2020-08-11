@@ -9,8 +9,7 @@ import java.io.StringWriter;
  * @date 2018/9/5  10:14
  */
 public class ExceptionUtil {
-
-
+    
     public static String getMessage(Exception e) {
         StringWriter sw = null;
         PrintWriter pw = null;
