@@ -5,7 +5,7 @@ import com.liuw.management.common.controller.BaseController;
 import com.liuw.management.common.response.ResponseData;
 import com.liuw.management.db.domain.system.User;
 import com.liuw.management.db.domain.system.request.UserRequest;
-import com.liuw.management.service.UserService;
+import com.liuw.management.service.system.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +30,14 @@ public class UserController extends BaseController {
     @GetMapping("/id/{id}")
     public ResponseData getById(@PathVariable("id") Long id) {
         return success(userService.getById(id));
+    }
+
+    @ApiOperation(value = "根据username查询用户信息")
+    @GetMapping("/username/{username}")
+    public ResponseData getByUsername(@PathVariable("username") String username) {
+        User user = new User();
+        user.setUsername("admin");
+        return success(user);
     }
 
     @ApiOperation(value = "分页查询")

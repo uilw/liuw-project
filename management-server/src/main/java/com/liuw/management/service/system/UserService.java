@@ -1,4 +1,4 @@
-package com.liuw.management.service;
+package com.liuw.management.service.system;
 
 
 import com.github.pagehelper.PageInfo;

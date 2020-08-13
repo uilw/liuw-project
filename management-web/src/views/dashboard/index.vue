@@ -6,31 +6,31 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'Dashboard',
-    computed: {
-      ...mapGetters([
-        'name'
-      ])
-    },
-    data() {
-      return {
-        m_group2: false
+export default {
+  name: 'Dashboard',
+  computed: {
+    ...mapGetters([
+      'name'
+    ])
+  },
+  data() {
+    return {
+      m_group2: false
+    }
+  },
+  methods: {
+    toggle_group2() {
+      if (this.m_group2) {
+        this.m_group2 = false
+      } else {
+        this.m_group2 = true
       }
-    },
-    methods: {
-      toggle_group2() {
-        if (this.m_group2) {
-          this.m_group2 = false
-        } else {
-          this.m_group2 = true
-        }
-        console.log(this.m_group2)
-      }
+      console.log(this.m_group2)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

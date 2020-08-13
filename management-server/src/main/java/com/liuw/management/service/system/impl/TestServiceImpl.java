@@ -1,8 +1,8 @@
-package com.liuw.management.service.impl;
+package com.liuw.management.service.system.impl;
 
 import com.liuw.management.db.domain.system.User;
-import com.liuw.management.service.TestService;
-import com.liuw.management.service.UserService;
+import com.liuw.management.service.system.TestService;
+import com.liuw.management.service.system.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

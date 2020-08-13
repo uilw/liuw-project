@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
-Vue.use(Router)
-
 /* Layout */
 import Layout from '@/layout'
+
+Vue.use(Router)
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -162,6 +161,34 @@ export const constantRoutes = [
       {
         path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
         meta: { title: 'External Link', icon: 'link' }
+      }
+    ]
+  },
+  // 系统管理
+  {
+    path: '/system',
+    component: Layout,
+    redirect: '/system/UserManage',
+    name: 'System',
+    meta: { title: 'System', icon: 'el-icon-setting' },
+    children: [
+      {
+        path: 'UserManage',
+        name: 'UserManage',
+        component: () => import('@/views/system/UserManage'),
+        meta: { title: 'UserManage', icon: 'user' }
+      },
+      {
+        path: 'RoleManage',
+        name: 'RoleManage',
+        component: () => import('@/views/system/RoleManage'),
+        meta: { title: 'RoleManage', icon: 'role' }
+      },
+      {
+        path: 'MenuManage',
+        name: 'MenuManage',
+        component: () => import('@/views/system/MenuManage'),
+        meta: { title: 'MenuManage', icon: 'menu' }
       }
     ]
   },
