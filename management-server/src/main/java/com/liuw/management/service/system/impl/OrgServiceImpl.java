@@ -6,18 +6,22 @@ import com.liuw.management.db.domain.system.response.OrgTreeResponse;
 import com.liuw.management.db.mapper.system.OrgMapper;
 import com.liuw.management.service.system.OrgService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@CacheConfig(cacheNames = "ORG")
 public class OrgServiceImpl implements OrgService {
 
     @Autowired
     private OrgMapper orgMapper;
 
     @Override
+    @Cacheable(key = "'TREE'")
     public List<OrgTreeResponse> getOrgTree() {
         List<OrgTreeResponse> responseList = new ArrayList<>();
 

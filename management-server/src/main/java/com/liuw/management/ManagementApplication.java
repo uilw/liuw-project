@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.core.env.Environment;
 
 import java.net.InetAddress;
@@ -11,6 +12,7 @@ import java.net.UnknownHostException;
 
 @Slf4j
 @SpringBootApplication
+@EnableCaching // 开启缓存
 @MapperScan("com.liuw.management.db.mapper.*")
 public class ManagementApplication {
 

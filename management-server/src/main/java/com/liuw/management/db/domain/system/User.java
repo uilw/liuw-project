@@ -1,15 +1,22 @@
 package com.liuw.management.db.domain.system;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable {
     private Long id;
 
     private String username;
 
     private String password;
 
-    private Integer sex;
+    private String idCard;
+
+    private String sex;
+
+    private String orgCode;
+
+    private String phone;
 
     private String remark;
 
@@ -45,12 +52,36 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getSex() {
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard == null ? null : idCard.trim();
+    }
+
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
-        this.sex = sex;
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
+    }
+
+    public String getOrgCode() {
+        return orgCode;
+    }
+
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode == null ? null : orgCode.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
     public String getRemark() {

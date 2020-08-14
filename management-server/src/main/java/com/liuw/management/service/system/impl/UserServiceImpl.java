@@ -8,6 +8,9 @@ import com.liuw.management.db.domain.system.UserExample;
 import com.liuw.management.db.domain.system.request.UserRequest;
 import com.liuw.management.db.mapper.system.UserMapper;
 import com.liuw.management.service.system.UserService;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,6 +21,7 @@ import java.util.List;
  * @date 2020-05-23 3:26
  */
 @Service
+@CacheConfig(cacheNames = "USER")
 public class UserServiceImpl implements UserService {
 
     private UserMapper userMapper;
@@ -27,6 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(key = "#id")
     public User getById(Long id) {
         return userMapper.selectByPrimaryKey(id);
     }
@@ -42,6 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict(key = "#user.id")
     public int update(User user) {
         return userMapper.updateByPrimaryKey(user);
     }
