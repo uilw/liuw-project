@@ -7,6 +7,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="id_card" jdbcType="VARCHAR" property="idCard" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="org_code" jdbcType="VARCHAR" property="orgCode" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
@@ -74,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, id_card, sex, org_code, phone, remark, create_name, create_time, 
-    update_name, update_time
+    id, username, password, id_card, sex, status, org_code, phone, remark, create_name, 
+    create_time, update_name, update_time
   </sql>
   <select id="selectByExample" parameterType="com.liuw.management.db.domain.system.UserExample" resultMap="BaseResultMap">
     select
@@ -109,15 +110,15 @@
   </delete>
   <insert id="insert" parameterType="com.liuw.management.db.domain.system.User">
     insert into system_user (id, username, password, 
-      id_card, sex, org_code, 
-      phone, remark, create_name, 
-      create_time, update_name, update_time
-      )
+      id_card, sex, status, 
+      org_code, phone, remark, 
+      create_name, create_time, update_name, 
+      update_time)
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{idCard,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{idCard,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{orgCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateName,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.liuw.management.db.domain.system.User">
     insert into system_user
@@ -136,6 +137,9 @@
       </if>
       <if test="sex != null">
         sex,
+      </if>
+      <if test="status != null">
+        status,
       </if>
       <if test="orgCode != null">
         org_code,
@@ -174,6 +178,9 @@
       </if>
       <if test="sex != null">
         #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="orgCode != null">
         #{orgCode,jdbcType=VARCHAR},
@@ -222,6 +229,9 @@
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=VARCHAR},
       </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
       <if test="record.orgCode != null">
         org_code = #{record.orgCode,jdbcType=VARCHAR},
       </if>
@@ -255,6 +265,7 @@
       password = #{record.password,jdbcType=VARCHAR},
       id_card = #{record.idCard,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
       org_code = #{record.orgCode,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
@@ -280,6 +291,9 @@
       </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
       </if>
       <if test="orgCode != null">
         org_code = #{orgCode,jdbcType=VARCHAR},
@@ -311,6 +325,7 @@
       password = #{password,jdbcType=VARCHAR},
       id_card = #{idCard,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
       org_code = #{orgCode,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},

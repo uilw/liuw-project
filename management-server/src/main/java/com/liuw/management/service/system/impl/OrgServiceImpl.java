@@ -46,8 +46,16 @@ public class OrgServiceImpl implements OrgService {
         responseList.stream().forEach(e -> {
             e.setChildren(getChildTree(e.getId(), orgList));
         });
+        
+        // 增加虚拟父节点
+        List<OrgTreeResponse> resultList = new ArrayList<>();
+        OrgTreeResponse result = new OrgTreeResponse();
+        result.setId(0);
+        result.setName("组织结构树");
+        result.setChildren(responseList);
+        resultList.add(result);
 
-        return responseList;
+        return resultList;
     }
 
     // 递归子机构

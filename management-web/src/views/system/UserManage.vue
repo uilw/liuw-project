@@ -2,13 +2,13 @@
   <div id="user-manage" class="user-manage-container">
 
     <el-row>
-      <el-col :span="10">
+      <el-col :span="6">
         <div :style="{height:contentHeight}" class="left-tree">
           <org-tree :height="tableHeight" @toOrgTree="fromOrgTree" />
         </div>
       </el-col>
 
-      <el-col :span="14">
+      <el-col :span="18">
         <div :style="{height:contentHeight}" class="right-content">
           <user-manage-content :height="tableHeight" :org-code="orgCode" />
         </div>

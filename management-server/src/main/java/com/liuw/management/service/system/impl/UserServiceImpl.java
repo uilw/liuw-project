@@ -8,6 +8,7 @@ import com.liuw.management.db.domain.system.UserExample;
 import com.liuw.management.db.domain.system.request.UserRequest;
 import com.liuw.management.db.mapper.system.UserMapper;
 import com.liuw.management.service.system.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -40,8 +41,15 @@ public class UserServiceImpl implements UserService {
     public PageInfo<User> findByPage(@RequestBody UserRequest userRequest) {
         // 设置分页
         PageHelper.startPage(userRequest.getPage(), userRequest.getPageSize());
-
-        List<User> users = userMapper.selectByExample(new UserExample());
+        
+        UserExample example = new UserExample();
+        UserExample.Criteria criteria = example.createCriteria();
+        // 组织机构代码
+        if(StringUtils.isNotBlank(userRequest.getOrgCode())) {
+            criteria.andOrgCodeEqualTo(userRequest.getOrgCode());
+        }
+        
+        List<User> users = userMapper.selectByExample(example);
 
         return new PageInfo<User>(users);
     }

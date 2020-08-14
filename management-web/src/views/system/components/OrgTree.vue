@@ -1,9 +1,14 @@
 <template>
   <div class="org-tree-container">
-    <el-input
-      v-model="filterText"
-      placeholder="输入关键字进行过滤"
-    />
+    <div class="filter-container">
+      <el-input
+        v-model="filterText"
+        placeholder="输入关键字进行过滤"
+        size="mini"
+        prefix-icon="el-icon-search"
+        clearable
+      />
+    </div>
 
     <div :style="{height: realHeight, 'overflow-y': 'scroll', 'margin-top': '5px'}">
       <el-tree
@@ -46,7 +51,7 @@ export default {
   },
   computed: {
     realHeight: function() {
-      return this.height + 100 + 'px'
+      return this.height - 70 + 'px'
     }
   },
   watch: {
@@ -81,7 +86,8 @@ export default {
     },
     // 节点点击事件
     handleNodeClick(data) {
-      this.$emit('toOrgTree', data.value)
+      console.log(data)
+      this.$emit('toOrgTree', data.code)
     }
   }
 }

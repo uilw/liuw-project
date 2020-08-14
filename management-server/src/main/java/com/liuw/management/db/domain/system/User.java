@@ -14,6 +14,8 @@ public class User implements Serializable {
 
     private String sex;
 
+    private String status;
+
     private String orgCode;
 
     private String phone;
@@ -66,6 +68,14 @@ public class User implements Serializable {
 
     public void setSex(String sex) {
         this.sex = sex == null ? null : sex.trim();
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 
     public String getOrgCode() {

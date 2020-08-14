@@ -2,9 +2,8 @@ package com.liuw.management.db.mapper.system;
 
 import com.liuw.management.db.domain.system.User;
 import com.liuw.management.db.domain.system.UserExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     long countByExample(UserExample example);

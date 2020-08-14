@@ -39,46 +39,46 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" min-width="100px" label="姓名">
+      <el-table-column align="center" min-width="100px" label="用户名">
         <template slot-scope="scope">
           <span>{{ scope.row.username }}</span>
         </template>
       </el-table-column>
 
-      <!--      <el-table-column align="center" min-width="100px" label="身份证号">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <span>{{ scope.row.userCode }}</span>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
+      <el-table-column align="center" min-width="100px" label="身份证号">
+        <template slot-scope="scope">
+          <span>{{ scope.row.idCard }}</span>
+        </template>
+      </el-table-column>
 
-      <!--      <el-table-column align="center" min-width="100px" label="警号">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <span>{{ scope.row.userPoliceId }}</span>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
+      <el-table-column align="center" min-width="100px" label="性别">
+        <template slot-scope="scope">
+          <span>{{ scope.row.sex | userSex }}</span>
+        </template>
+      </el-table-column>
 
-      <!--      <el-table-column align="center" min-width="100px" label="职务">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <span>{{ scope.row.userJobDesc }}</span>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
+      <el-table-column align="center" min-width="100px" label="状态">
+        <template slot-scope="scope">
+          <span>{{ scope.row.status | userStatus }}</span>
+        </template>
+      </el-table-column>
 
-      <!--      <el-table-column align="center" min-width="100px" label="所属机构名称">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <span>{{ scope.row.orgName }}</span>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
+      <!--<el-table-column align="center" min-width="100px" label="所属机构名称">
+        <template slot-scope="scope">
+          <span>{{ scope.row.orgName }}</span>
+        </template>
+      </el-table-column>-->
 
-      <!--      <el-table-column align="center" min-width="100px" label="角色">-->
-      <!--        <template slot-scope="scope">-->
-      <!--          <span>{{ scope.row.roleName }}</span>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
+      <!--<el-table-column align="center" min-width="100px" label="角色">
+        <template slot-scope="scope">
+          <span>{{ scope.row.roleName }}</span>
+        </template>
+      </el-table-column>-->
 
     </el-table>
 
     <!-- 分页 -->
-    <div v-show="!listLoading" class="pagination-container">
+    <div v-show="!listLoading" class="pagination-container" style="margin-top: 8px;">
       <el-pagination
         :current-page.sync="queryData.page"
         :page-size="queryData.pageSize"
@@ -155,7 +155,6 @@ export default {
     getUserByPage() {
       this.loading = true
       fetchGetUserByPage(this.queryData).then(response => {
-        console.log(response)
         if (response.code !== '200') {
           this.$notify({
             title: '提示',
@@ -165,6 +164,7 @@ export default {
           })
         } else if (response.data.list.length >= 0) {
           this.tableData = response.data.list
+          console.log(this.tableData)
           this.total = response.data.total
         }
         this.loading = false

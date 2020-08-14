@@ -5,5 +5,9 @@ import lombok.Data;
 
 @Data
 public class UserRequest extends BaseRequest {
-    
+
+    /**
+     * 组织机构代码
+     */
+    private String orgCode;
 }
