@@ -153,7 +153,8 @@ export default {
   methods: {
     // 分页查询用户
     getUserByPage() {
-      this.loading = true
+      this.listLoading = true
+      this.tableData = []
       fetchGetUserByPage(this.queryData).then(response => {
         if (response.code !== '200') {
           this.$notify({
@@ -164,12 +165,10 @@ export default {
           })
         } else if (response.data.list.length >= 0) {
           this.tableData = response.data.list
-          console.log(this.tableData)
           this.total = response.data.total
         }
-        this.loading = false
+        this.listLoading = false
       })
-      this.loading = false
     },
     orgCodeChange() {
       this.queryData.orgCode = this.orgCode
