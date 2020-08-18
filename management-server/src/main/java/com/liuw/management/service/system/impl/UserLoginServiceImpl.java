@@ -7,15 +7,15 @@ import com.liuw.management.db.domain.system.request.UserLoginRequest;
 import com.liuw.management.db.domain.system.response.UserLoginResponse;
 import com.liuw.management.db.mapper.system.UserMapper;
 import com.liuw.management.service.system.UserLoginService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class UserLoginServiceImpl implements UserLoginService {
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override
@@ -26,7 +26,7 @@ public class UserLoginServiceImpl implements UserLoginService {
         criteria.andUsernameEqualTo(userLoginRequest.getUsername());
         List<User> userList = userMapper.selectByExample(example);
         // 用户存在则返回用户信息，否则返回null
-        if(null != userList && userList.size() == 1 && userLoginRequest.getPassword().equals(userList.get(0).getPassword())) {
+        if (null != userList && userList.size() == 1 && userLoginRequest.getPassword().equals(userList.get(0).getPassword())) {
             UserLoginResponse result = new UserLoginResponse();
             result.setUsername(userList.get(0).getUsername());
             result.setToken("TOKEN918364739887276363");

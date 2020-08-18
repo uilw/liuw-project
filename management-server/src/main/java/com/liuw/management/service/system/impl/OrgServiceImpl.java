@@ -5,11 +5,11 @@ import com.liuw.management.db.domain.system.OrgExample;
 import com.liuw.management.db.domain.system.response.OrgTreeResponse;
 import com.liuw.management.db.mapper.system.OrgMapper;
 import com.liuw.management.service.system.OrgService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
 @CacheConfig(cacheNames = "ORG")
 public class OrgServiceImpl implements OrgService {
 
-    @Autowired
+    @Resource
     private OrgMapper orgMapper;
 
     @Override
