@@ -1,6 +1,5 @@
 package com.liuw.management.common.exception;
 
-
 import com.liuw.management.common.response.ResponseData;
 import com.liuw.management.common.util.ExceptionUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +36,6 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public ResponseData handleException(Exception e) {
-
         log.error(ExceptionUtil.getMessage(e));
         String message = null;
         if (e instanceof BaseException) {
@@ -58,11 +56,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseData handleMessageException(Exception e) {
         log.error(ExceptionUtil.getMessage(e));
-
         MethodArgumentNotValidException c = (MethodArgumentNotValidException) e;
         List<ObjectError> errors = c.getBindingResult().getAllErrors();
         StringBuffer errorMsg = new StringBuffer();
-        for(ObjectError error : errors) {
+        for (ObjectError error : errors) {
             errorMsg.append(error.getDefaultMessage()).append(";");
         }
 
